@@ -65,10 +65,11 @@ src=ds['stc'] #for convenience. Also to keep the full stcs saved in case I reass
 
 
 #-----------------------cluster based permutation test-------------------------#
+# condition names
 SOAs = ['150','200','250','300']
 Tasks = ['ObjectNaming', 'WordReading']
 Prime_Types = ['id', 'semrel', 'unrel']
-corrected_pvalue = 0.05/2
+pvalue = 0.05
 
 for current_task in Tasks:
     # Using full left hemisphere:
@@ -86,7 +87,7 @@ for current_task in Tasks:
     f.write(str(res.clusters))
     f.close()
 
-    ix_sign_clusters=np.where(res.clusters['p']<=corrected_pvalue)[0]
+    ix_sign_clusters=np.where(res.clusters['p']<=pvalue)[0]
 
     for i in range(len(ix_sign_clusters)):
         cluster = res.clusters[ix_sign_clusters[i]]['cluster']
